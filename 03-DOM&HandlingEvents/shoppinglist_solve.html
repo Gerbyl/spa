@@ -1,0 +1,31 @@
+<head>
+    <title>Shopping List</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h1>Shopping List</h1>
+    <p>
+        New item: <input type="text" id="newItem" name="item">
+        <button type="button" id="add" onclick="add1()">Add</button>
+    </p>
+    <h3>List of items</h3>
+    <ol id="list">
+        <li>cooking oil</li>
+        <li>breakfast cereal</li>
+        <li>bread</li>
+    </ol>
+
+    <script>
+
+function add1() { 
+
+    var li = document.createElement("li");
+    var t = document.createTextNode(document.getElementById("newItem").value);
+	li.appendChild(t);
+    document.getElementById("list").appendChild(li);
+}
+    </script>
+</body>
+
+</html>
