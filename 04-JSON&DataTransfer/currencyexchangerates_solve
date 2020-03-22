@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Exchange Rates</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Exchange Rates</h1>
+			<table>
+				<tr>
+				  <th>Currency</th>
+				  <th>Costs</th>
+				</tr>
+				<tr>
+				  <td>Euro</td>
+				  <td id = "EUR"></td>
+				</tr>
+				<tr>
+				  <td>Dollar</td>
+				  <td id = "USD"></td>
+				</tr>
+				<tr>
+					<td>Pound</td>
+					<td id = "GBP"></td>
+				  </tr>
+			  </table>
+		  
+		
+
+		
+		<script>
+			var xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+  				if (this.readyState == 4 && this.status == 200) {
+					var myObj = JSON.parse(this.responseText);
+					
+					var i = 0;
+					
+					while(myObj[0].rates[i]){
+						if (myObj[0].rates[i].code== "USD"){
+							document.getElementById("USD").innerHTML = myObj[0].rates[i].mid;
+							
+					
+						}
+						if (myObj[0].rates[i].code== "EUR"){
+							document.getElementById("EUR").innerHTML = myObj[0].rates[i].mid;
+							
+					
+						}
+						if (myObj[0].rates[i].code== "GBP"){
+							document.getElementById("GBP").innerHTML = myObj[0].rates[i].mid;
+							
+					
+						}
+						i++;
+					}
+					 
+					
+  				}
+			};
+			xmlhttp.open("GET", "http://api.nbp.pl/api/exchangerates/tables/a/today/?format=json", true);
+			xmlhttp.send();
+      
+		</script>
+		</script>
+
+	</body>
+</html>
