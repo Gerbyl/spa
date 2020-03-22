@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>List of Personal Data</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>People</h1>
+		<p id = "person">Click the button below to see the list of personal data</p>
+		<input type="button" value="Show" onclick="personalData()">
+		</p>
+
+		<script>
+			function personalData(){
+				var xmlhttp = new XMLHttpRequest();
+				
+
+				xmlhttp.onreadystatechange = function() {
+    					if (this.readyState == 4 && this.status == 200) {
+        					var myObj = JSON.parse(this.responseText);
+							var x = "";
+						var i = 0;
+    					while(myObj[i]) {
+       						x =  x + " " + myObj[i].name + " " + myObj[i].surname.toUpperCase() + ", " + myObj[i].country + "<br/>";
+							i++;
+    					}
+    					document.getElementById("person").innerHTML = x;
+						
+    			}
+			};
+			xmlhttp.open("GET", "people.json", true);
+			xmlhttp.send();
+
+			}
+			
+			
+		</script>
+
+	</body>
+</html>
