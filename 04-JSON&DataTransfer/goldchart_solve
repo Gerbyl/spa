@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Gold price</title>
+		<meta charset="UTF-8">
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	</head>
+	<body>
+		<h1>Gold price</h1>
+
+		<canvas id="goldPrice"></canvas>
+
+    <script>
+			
+var gp = document.getElementById('goldPrice').getContext('2d');
+var goldChart = new Chart(gp, {
+    type: 'horizontalBar',
+
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'LAST 10 GOLD QUOTATION',
+            backgroundColor: 'rgb(156, 0, 156)',
+            borderColor: 'rgb(84, 0, 84)',
+			borderWidth: 4,
+			data: []
+        }]
+    },
+    options: {}
+});
+
+function getGoldPrices() {
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://api.nbp.pl/api/cenyzlota/last/10?format=json");
+            xhr.onreadystatechange = function() {
+                if(this.readyState == 4 && this.status == 200) {
+                    let goldPrice = JSON.parse(this.responseText);
+					var  i = 0;
+                    while(goldPrice[i]) {
+                        goldChart.data.labels.push(goldPrice[i].data);
+                        goldChart.data.datasets[0].data.push(goldPrice[i].cena);
+                        goldChart.update();
+						i++;
+                    }
+                }
+            }
+            xhr.send();
+        }
+		getGoldPrices();
+    </script>
+	</body>
+</html>
