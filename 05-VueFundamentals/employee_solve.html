@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <h1>EMPLOYEE RECORD</h1>
+    <div id="app" >
+      <p>Name 1:&ensp;{{name1}}</p>
+      <p v-if="name2">Name 2:&ensp; {{name2 }}</p>
+      <p>Surname:&ensp;{{surname}}</p>
+      <p v-show="nationality == 'Polish'">Pesel:&ensp; {{pesel }}</p>
+      <p v-show="foreigner">Nationality:&ensp; {{nationality }}</p>
+      <p>Address:&ensp;{{address}}</p>
+    </div>
+
+
+    <script>
+        var app = new Vue({
+          el: '#app',
+          data: {
+            name1: 'Adam',
+            name2: 'Jan',
+            surname: 'Majewski',
+            foreigner: false,
+            nationality: 'Polish',
+            pesel: '92021708229',
+            address: 'ul. Szeroka 3, Kraków',
+          }
+        });
+      </script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</head>
+<body>
+    <div id="app">
+        <canvas id="rate"></canvas>
+    </div>
+    
+    
+    <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        languages: [
+          {
+            language: 'Python',
+            popularity: 25.95
+          },
+          {
+            language: 'Java',
+            popularity: 21.42
+          },
+          {
+            language: 'JavaScript',
+            popularity: 8.26
+          },
+          {
+            language: 'C#',
+            popularity: 7.62
+          },
+          {
+            language: 'Php',
+            popularity: 7.37
+          }
+        ],
+        rate: null 
+      },
+      mounted() {
+        var langRate = document.getElementById('rate').getContext('2d');
+        this.rate = new Chart(langRate, {
+          type: 'horizontalBar',
+
+          data: {
+            labels: [],
+            datasets: [{
+            label: 'POPULAR PROGRAMMING LANGUAGE',
+            backgroundColor: 'rgb(156, 0, 156)',
+            borderColor: 'rgb(84, 0, 84)',
+			borderWidth: 4,
+			data: []
+            }]
+          },
+          options: {}
+            
+          
+        });
+      },
+      methods: {
+        langData: function () {
+            var i = 0;
+            while(this.languages[i]) {
+                        this.rate.data.labels.push(this.languages[i].language);
+                        this.rate.data.datasets[0].data.push(this.languages[i].popularity);
+                        this.rate.update();
+						i++;
+            }
+          
+        }
+      }
+    });
+
+    app.langData();
+      
+
+     
+     
+
+    
+    
+  </script>
+</body>
+</html>

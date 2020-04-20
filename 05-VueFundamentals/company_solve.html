@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div v-bind:style="style" id="app" >
+        <p>
+            <b>{{company}}</b><br>
+            {{address}}<br>
+            {{postcode}} {{city}}<br>
+            tel. {{landline}}, {{mobile}}
+            <a v-bind:href="web">{{web}}</a>
+
+        </p>
+      </div>
+
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+          company: 'UnikPol S.A.',
+          address: 'ul. Ukryta 5',
+          postcode: '02-114',
+          city: 'Rawa Mazowiecka',
+          landline: '22 345 90 21',
+          mobile: '888 213 992',
+          web: 'http://www.unikpol.pl',
+
+            style: {
+                border: '1px solid black',
+                width: '250px',
+                margin : 'auto',
+                textAlign: 'center'
+            }
+        }
+    });
+  </script>
+
+</body>
+</html>

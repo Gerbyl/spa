@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <p><b>RECEIPT</b></p>
+  <div id="app">
+      <p>   ----------------<br>
+            Product<b>:</b> {{product.name}}<br>
+            Unit Price<b>:</b> {{product.unitPrice}} zł<br>
+            Quantity<b>:</b> {{product.quantity}}<br>
+            Amount<b>:</b> {{amount = product.unitPrice * product.quantity}}<br>
+            VAT Tax Rate<b>:</b> {{product.VAT}}<br>
+            ================<br>
+            <b>Total: {{(amount * (product.VAT / 100)) + amount}}</b>
+      </p>
+      
+    </div>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        product: {
+          name: 'book',
+          unitPrice: 17.5,
+          quantity: 3,
+          VAT: 23
+        }
+      }
+    });
+
+
+  </script>
+
+</body>
+</html>
